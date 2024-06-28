@@ -599,7 +599,7 @@ window.ThreadTemplates = (function () {
         end_of_history : function(created_at){
             return '<div title="Conversation started on '+Messenger.format().makeHumanTime(created_at)+'"' +
                 ' id="end_history_marker" class="alert-dark shadow-sm rounded mb-4 mt-n3 w-100 text-center text-dark"> ' +
-                '<strong><i class="fas fa-comments"></i> Start of conversation</div>';
+                '<strong><i class="fas fa-comments"></i> ' +startOfConversation+ '</div>';
         },
         system_message : function (data, modal) {
             let icon = 'fas fa-info-circle', extra = '';
@@ -670,7 +670,7 @@ window.ThreadTemplates = (function () {
             return ''
         },
         thread_group_header : function(data){
-            let knok = '<button onclick="ThreadManager.calls().sendKnock()" id="knok_btn" data-toggle="tooltip" title="Knock at '+Messenger.format().escapeHtml(data.name)+'" ' +
+            let knok = '<button onclick="ThreadManager.calls().sendKnock()" id="knok_btn" data-toggle="tooltip" title="'+knockAt+' '+Messenger.format().escapeHtml(data.name)+'" ' +
                 'data-placement="bottom" class="btn btn-lg text-secondary btn-light pt-1 pb-0 px-2" type="button"><i class="fas fa-hand-rock fa-2x"></i></button>',
             invites = '<a class="dropdown-item" onclick="ThreadManager.group().viewInviteGenerator(); return false;" id="threadOptionLink" href="#"><i class="fas fa-link"></i> Invitations</a>\n',
             admin = '<a class="dropdown-item" onclick="ThreadManager.group().viewSettings(); return false;" id="threadOptionLink" href="#"><i class="fas fa-cog"></i> Settings</a>\n',
@@ -705,11 +705,11 @@ window.ThreadTemplates = (function () {
         },
         thread_resource_dropdown : function(){
             return '<div class="dropdown-divider"></div>' +
-                '<a onclick="ThreadManager.load().threadDocuments(); return false;" class="dropdown-item" href="#"><i class="fas fa-file-alt"></i> Documents</a>' +
-                '<a onclick="ThreadManager.load().threadImages(); return false;" class="dropdown-item" href="#"><i class="fas fa-images"></i> Images</a>' +
-                '<a onclick="ThreadManager.load().threadAudio(); return false;" class="dropdown-item" href="#"><i class="fas fa-music"></i> Audio</a>' +
-                '<a onclick="ThreadManager.load().threadVideos(); return false;" class="dropdown-item" href="#"><i class="fas fa-video"></i> Videos</a>' +
-                '<a onclick="ThreadManager.load().threadLogs(); return false;" class="dropdown-item" href="#"><i class="fas fa-database"></i> Logs</a>' +
+                '<a onclick="ThreadManager.load().threadDocuments(); return false;" class="dropdown-item" href="#"><i class="fas fa-file-alt"></i> '+documents+'</a>' +
+                '<a onclick="ThreadManager.load().threadImages(); return false;" class="dropdown-item" href="#"><i class="fas fa-images"></i> '+images+'</a>' +
+                '<a onclick="ThreadManager.load().threadAudio(); return false;" class="dropdown-item" href="#"><i class="fas fa-music"></i> '+audio+'</a>' +
+                '<a onclick="ThreadManager.load().threadVideos(); return false;" class="dropdown-item" href="#"><i class="fas fa-video"></i> '+video+'</a>' +
+                '<a onclick="ThreadManager.load().threadLogs(); return false;" class="dropdown-item" href="#"><i class="fas fa-database"></i> '+logs+'</a>' +
                 '<div class="dropdown-divider"></div>\n';
         },
         thread_network_opt : function(data){

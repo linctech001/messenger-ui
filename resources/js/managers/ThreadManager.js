@@ -467,11 +467,11 @@ window.ThreadManager = (function () {
                 case 1:
                 case 2:
                     if(opt.thread.lockout || !opt.thread.messaging) return;
-                    if (e.keyCode === 13) {
-                        methods.sendMessage();
-                        methods.stopTyping();
-                        return;
-                    }
+                    // if (e.keyCode === 13) {
+                    //     methods.sendMessage();
+                    //     methods.stopTyping();
+                    //     return;
+                    // }
                     methods.isTyping();
                 break;
                 case 3:

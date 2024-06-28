@@ -29,6 +29,8 @@ window.ThreadTemplates = (function () {
             return body.replace(methods.giphyRegex(), html);
         },
         format_message_body : function(body, skipExtra){
+            body = body.replace(/(?:\r\n|\r|\n)/g, '<br>');
+            console.log(body, 'body');
             if(skipExtra === true){
                 return Messenger.format().shortcodeToImage(body)
             }
@@ -1377,7 +1379,7 @@ window.ThreadTemplates = (function () {
                 '                        <form autocomplete="off" class="form-inline w-100" id="thread_form">\n' +
                 '                            <div class="col-12">\n' +
                 '                                <div class="form-group form-group-xs-nm">\n' +
-                '                                    <input disabled autocomplete="off" spellcheck="true" type="text" title="message" name="message_txt_'+Date.now()+'" id="message_text_input" class="form-control w-100 pr-special-btn"/>\n' +
+                '                                    <textarea style="resize: none;" disabled autocomplete="off" spellcheck="true" type="text" title="message" name="message_txt_'+Date.now()+'" id="message_text_input" class="form-control w-100 pr-special-btn"></textarea>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
                 '                            <div class="col-12 my-1">\n' +

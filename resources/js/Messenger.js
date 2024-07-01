@@ -296,7 +296,7 @@ window.Messenger = (function () {
                     return "";
                 }
                 if(options.callback){
-                    return "<div class='modal-footer'><div class='mx-auto'><button type='button' class='btn btn-md btn-light modal_close' data-dismiss='modal'>Cancel</button>" +
+                    return "<div class='modal-footer'><div class='mx-auto'><button type='button' class='btn btn-md btn-light modal_close' data-dismiss='modal'>"+cancel+"</button>" +
                         "<button id='modal_cb_btn' type='button' class='ml-2 btn btn-md btn-"+options.cb_btn_theme+" modal_callback "+(options.pre_loader ? "NS" : "")+"'><i class='fas fa-"+options.cb_btn_icon+"'></i> "+options.cb_btn_txt+"</button></div></div>";
                 }
                 return "<div class='modal-footer'><div class='mx-auto'><button type='button' class='btn btn-sm btn-light modal_close' data-dismiss='modal'>"+options.close_btn_txt+"</button></div></div>";

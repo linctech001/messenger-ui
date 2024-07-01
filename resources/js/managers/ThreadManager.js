@@ -2841,6 +2841,10 @@ window.ThreadManager = (function () {
             mounted.Initialize({
                 type : 5
             });
+            if(window.isMobileTpl && $('#message_sidebar_container').hasClass('mobile-hide')) {
+                $('#message_sidebar_container').removeClass('mobile-hide');
+                $('#message_content_container').hide();
+            }
             window.history.pushState({type : 5}, null, Messenger.common().WEB)
         },
         messageEdits : function(route){
@@ -3146,6 +3150,10 @@ window.ThreadManager = (function () {
             mounted.Initialize({
                 type : 7,
             });
+            if(window.isMobileTpl && !$('#message_sidebar_container').hasClass('mobile-hide')) {
+              $('#message_sidebar_container').addClass('mobile-hide');
+              $('#message_content_container').show();
+            }
             if(!noHistory) window.history.pushState({type : 7}, null, Messenger.common().WEB + '?search');
         },
         contacts : function(noHistory){
@@ -3203,6 +3211,10 @@ window.ThreadManager = (function () {
             opt.elements.message_container.html(ThreadTemplates.render().new_group_base());
             if(!noHistory) window.history.pushState({type : 4}, null, Messenger.common().WEB + '?newGroup');
             if(Messenger.common().mobile) ThreadTemplates.mobile(true);
+            if(window.isMobileTpl && !$('#message_sidebar_container').hasClass('mobile-hide')) {
+              $('#message_sidebar_container').addClass('mobile-hide');
+              $('#message_content_container').show();
+            }
             mounted.Initialize({
                 type : 4
             });
@@ -3220,6 +3232,10 @@ window.ThreadManager = (function () {
         initiate_thread : function(arg, noHistory){
             if(opt.states.lock || (arg.thread_id === opt.thread.id && !("force" in arg))) return;
             if(Messenger.common().mobile) ThreadTemplates.mobile(true);
+            if(window.isMobileTpl && !$('#message_sidebar_container').hasClass('mobile-hide')) {
+              $('#message_sidebar_container').addClass('mobile-hide');
+              $('#message_content_container').show();
+            }
             opt.elements.message_container.html(ThreadTemplates.render().loading_thread_base());
             mounted.reset(true);
             opt.thread.initializing = true;

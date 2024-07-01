@@ -289,7 +289,6 @@ window.ThreadTemplates = (function () {
                 '<div class="media"><div class="media-left media-middle"><img src="'+data.owner.avatar.sm+'" class="media-object rounded-circle thread-list-avatar avatar-is-offline" /></div>' +
                 '<div class="media-body thread_body_li"><div class="header d-inline"><small><div class="float-right date"><time class="timeago" datetime="'+data.created_at+'">'+Messenger.format().makeTimeAgo(data.created_at)+'</time></div></small>' +
                 '<div class="from font-weight-bold">'+data.owner.name+'</div></div><div class="description"><em><i class="fas fa-music"></i> '+data.body+'</em></div></div></div></a>' +
-                '<div class="col-12 text-center"><audio controls preload="none" class="message-audio-player"><source src="'+data.audio+'?stream=true"></audio></div>' +
                 '</li>'
         },
         video_item : function(data){
@@ -299,7 +298,6 @@ window.ThreadTemplates = (function () {
                 '<div class="media"><div class="media-left media-middle"><img src="'+data.owner.avatar.sm+'" class="media-object rounded-circle thread-list-avatar avatar-is-offline" /></div>' +
                 '<div class="media-body thread_body_li"><div class="header d-inline"><small><div class="float-right date"><time class="timeago" datetime="'+data.created_at+'">'+Messenger.format().makeTimeAgo(data.created_at)+'</time></div></small>' +
                 '<div class="from font-weight-bold">'+data.owner.name+'</div></div><div class="description"><em><i class="fas fa-video"></i> '+data.body+'</em></div></div></div></a>' +
-                '<div class="col-12 text-center"><div class="embed-responsive embed-responsive-16by9 my-3"><video class="embed-responsive-item" controls preload="metadata"><source src="'+data.video+'?stream=true"></video></div></div>' +
                 '</li>'
         },
         messenger_search_friend : function(profile){
@@ -673,8 +671,8 @@ window.ThreadTemplates = (function () {
             let knok = '<button onclick="ThreadManager.calls().sendKnock()" id="knok_btn" data-toggle="tooltip" title="'+knockAt+' '+Messenger.format().escapeHtml(data.name)+'" ' +
                 'data-placement="bottom" class="btn btn-lg text-secondary btn-light pt-1 pb-0 px-2" type="button"><i class="fas fa-hand-rock fa-2x"></i></button>',
             invites = '<a class="dropdown-item" onclick="ThreadManager.group().viewInviteGenerator(); return false;" id="threadOptionLink" href="#"><i class="fas fa-link"></i> Invitations</a>\n',
-            admin = '<a class="dropdown-item" onclick="ThreadManager.group().viewSettings(); return false;" id="threadOptionLink" href="#"><i class="fas fa-cog"></i> Settings</a>\n',
-            view_participants = '<a class="dropdown-item" onclick="ThreadManager.group().viewParticipants(); return false;" id="viewParticipantLink" href="#"><i class="fas fa-users"></i> Participants</a>\n',
+            admin = '<a class="dropdown-item" onclick="ThreadManager.group().viewSettings(); return false;" id="threadOptionLink" href="#"><i class="fas fa-cog"></i> '+settings+'</a>\n',
+            view_participants = '<a class="dropdown-item" onclick="ThreadManager.group().viewParticipants(); return false;" id="viewParticipantLink" href="#"><i class="fas fa-users"></i> '+participants+'</a>\n',
             view_bots = '<a class="dropdown-item" onclick="ThreadBots.viewBots(); return false;" id="viewBotsLink" href="#"><i class="fas fa-robot"></i> Chat Bots</a>\n';
 
             return '<div id="thread_header_area"><div class="dropdown float-right">\n' +
@@ -694,9 +692,9 @@ window.ThreadTemplates = (function () {
                 (data.locked
                         ? ''
                         : (data.options.muted ? '<a onclick="ThreadManager.mute().unmute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-up"></i> Unmute</a>'
-                            : '<a onclick="ThreadManager.mute().mute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-mute"></i> Mute</a>')
+                            : '<a onclick="ThreadManager.mute().mute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-mute"></i> '+mute+'</a>')
                 ) +
-                '<a class="dropdown-item" onclick="ThreadManager.group().leaveGroup(); return false;" id="leaveGroupLink" href="#"><i class="fas fa-sign-out-alt"></i> Leave Group</a>'+
+                '<a class="dropdown-item" onclick="ThreadManager.group().leaveGroup(); return false;" id="leaveGroupLink" href="#"><i class="fas fa-sign-out-alt"></i> '+leaveGroup+'</a>'+
                     '</div>'+
                 '<button onclick="ThreadManager.load().closeOpened()" title="Close" class="btn btn-lg text-danger btn-light pt-1 pb-0 px-2 mr-1" type="button"><i class="fas fa-times fa-2x"></i></button>'+
                 '</div>'+
@@ -982,7 +980,7 @@ window.ThreadTemplates = (function () {
                 '            </div>\n' +
                 '            <div class="col-12">\n' +
                 '                <div class="text-center">\n' +
-                '                    <button type="button" id="grp_inv_back_btn" class="btn btn-outline-dark '+(back ? "" : "NS")+'"><i class="fas fa-undo"></i> Cancel</button>\n' +
+                '                    <button type="button" id="grp_inv_back_btn" class="btn btn-outline-dark '+(back ? "" : "NS")+'"><i class="fas fa-undo"></i> '+cancel+'</button>\n' +
                 '                    <button type="button" id="grp_inv_generate_btn" class="btn btn-success">Generate <i class="fas fa-random"></i></button>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
@@ -1212,7 +1210,7 @@ window.ThreadTemplates = (function () {
         new_group_base : function(){
             return '<div id="thread_header_area"><div class="dropdown float-right">\n' +
                 '<button onclick="ThreadManager.load().closeOpened()" title="Close" class="btn btn-lg text-danger btn-light pt-1 pb-0 px-2 mr-1" type="button"><i class="fas fa-times fa-2x"></i></button>'+
-                '</div><div class="h3 font-weight-bold"><div class="d-inline-block mt-2 ml-2"><i class="fas fa-edit"></i> Create a group</div></div>'+
+                '</div><div class="h3 font-weight-bold"><div class="d-inline-block mt-2 ml-2"><i class="fas fa-edit"></i> '+createGroup+'</div></div>'+
                 '</div>'+
                 '<div class="card messages-panel mt-1">\n' +
                 '    <div class="message-body" id="thread_new_group">\n' +
@@ -1226,9 +1224,9 @@ window.ThreadTemplates = (function () {
                 '                        <form class="form-inline w-100 needs-validation" action="javascript:ThreadManager.newForms().newGroup()" id="new_group_form" novalidate>\n' +
                 '                            <div class="col-12">\n' +
                 '                            <div class="input-group">\n' +
-                '                                <input minlength="3" maxlength="50" class="form-control" id="subject" placeholder="Name the group conversation" name="subject-'+Date.now()+'" autocomplete="off" required>\n' +
+                '                                <input minlength="3" maxlength="50" class="form-control" id="subject" placeholder="'+createGroupPlaceholder+'" name="subject-'+Date.now()+'" autocomplete="off" required>\n' +
                 '                                <div class="input-group-append">\n' +
-                '                                    <button id="make_thread_btn" class="btn btn-primary"><i class="fas fa-edit"></i> Create</button>\n' +
+                '                                    <button id="make_thread_btn" class="btn btn-primary"><i class="fas fa-edit"></i> '+create+'</button>\n' +
                 '                                </div>\n' +
                 '                                <div class="invalid-feedback mb-n4">Required / 3 - 50 characters</div>'+
                 '                            </div>'+
@@ -1248,7 +1246,7 @@ window.ThreadTemplates = (function () {
                 '</div><div class="h3 font-weight-bold">' +
                 '<div class="form-inline ml-2">\n' +
                 '  <div class="form-row w-100 mt-1">\n' +
-                '      <input autocomplete="off" id="messenger_search_profiles" type="search" class="shadow-sm form-control w-100" placeholder="Search profiles...">\n' +
+                '      <input autocomplete="off" id="messenger_search_profiles" type="search" class="shadow-sm form-control w-100" placeholder="'+searchProfile+'">\n' +
                 '  </div>\n' +
                 '</div></div>' +
                 '</div>'+
@@ -1337,7 +1335,7 @@ window.ThreadTemplates = (function () {
             return '<div id="thread_header_area"><div class="dropdown float-right">\n' +
                 '<button onclick="ThreadManager.load().closeOpened()" title="Close" class="btn btn-lg text-danger btn-light pt-1 pb-0 px-2 mr-1" type="button"><i class="fas fa-times fa-2x"></i></button>'+
                 '</div><div class="h3 font-weight-bold">' +
-                '<div class="d-inline-block mt-2 ml-2"><i class="fas fa-user-friends"></i> Friends</div>' +
+                '<div class="d-inline-block mt-2 ml-2"><i class="fas fa-user-friends"></i> '+friends+'</div>' +
                 '</div></div>'+
                 '<div class="card messages-panel mt-1">\n' +
                 '    <div class="message-body" id="thread_new_group">\n' +

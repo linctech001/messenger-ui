@@ -169,7 +169,7 @@ window.RecordAudio = (function () {
             Messenger.alert().destroyModal();
             Messenger.alert().Alert({
                 theme : 'error',
-                title : 'Unable to load your audio device.',
+                title : '音声ディバイスが接続できません。',
                 toast : true
             });
             methods.closed();

@@ -561,7 +561,7 @@ window.ThreadManager = (function () {
                 data : data,
                 success : function(data){
                     Messenger.alert().Alert({
-                        title : 'You updated '+data.name+'\'s Avatar.',
+                        title : '更新に成功しました',
                         toast : true
                     });
                 },
@@ -748,7 +748,7 @@ window.ThreadManager = (function () {
             if(opt.thread.id === thread_id){
                 NotifyManager.sound('notify');
                 Messenger.alert().Alert({
-                    title : 'You were promoted to admin. Refreshing the group...',
+                    title : 'グループ情報更新中...',
                     toast : true,
                     theme : 'info'
                 });
@@ -759,7 +759,7 @@ window.ThreadManager = (function () {
             if(opt.thread.id === thread_id){
                 NotifyManager.sound('notify');
                 Messenger.alert().Alert({
-                    title : 'You were demoted from admin. Refreshing the group...',
+                    title : 'グループ情報更新中...',
                     toast : true,
                     theme : 'info'
                 });
@@ -770,7 +770,7 @@ window.ThreadManager = (function () {
             if(opt.thread.id === thread_id){
                 NotifyManager.sound('notify');
                 Messenger.alert().Alert({
-                    title : 'Your permissions were updated. Refreshing the group...',
+                    title : 'グループ情報更新中...',
                     toast : true,
                     theme : 'info'
                 });
@@ -927,7 +927,7 @@ window.ThreadManager = (function () {
             if(!Messenger.isProvider(settings.sender.provider_id, null, settings.sender.provider_alias)){
                 NotifyManager.sound('notify');
                 Messenger.alert().Alert({
-                    title : settings.sender.name+' updated the groups settings. Refreshing the group...',
+                    title : settings.sender.name+' より設定を変更しました。 グループ情報更新中...',
                     toast : true,
                     theme : 'info'
                 })
@@ -938,7 +938,7 @@ window.ThreadManager = (function () {
             if(!Messenger.isProvider(settings.sender.provider_id, null, settings.sender.provider_alias)){
                 NotifyManager.sound('notify');
                 Messenger.alert().Alert({
-                    title : settings.sender.name+' updated the groups avatar. Refreshing the group...',
+                    title : settings.sender.name+' より画像を更新しました。 グループ情報更新中...',
                     toast : true,
                     theme : 'info'
                 })
@@ -996,12 +996,12 @@ window.ThreadManager = (function () {
             if(special){
                 opt.elements.data_table = elm.DataTable({
                     "language": {
-                        "info": "Showing _START_ to _END_ of _TOTAL_ friends",
-                        "lengthMenu": "Show _MENU_ friends",
-                        "infoEmpty": "Showing 0 to 0 of 0 friends",
-                        "infoFiltered": "(filtered from _MAX_ total friends)",
-                        "emptyTable": "No friends found",
-                        "zeroRecords": "No matching friends found"
+                        "info": "_START_ - _END_ / _TOTAL_ 連絡先",
+                        "lengthMenu": "1ページ _MENU_ 表示",
+                        "infoEmpty": "0 ー 0 / 0 連絡先",
+                        "infoFiltered": "(_MAX_ 連絡先)",
+                        "emptyTable": "一致する連絡先が見つかりません",
+                        "zeroRecords": "一致する連絡先が見つかりません"
                     },
                     "drawCallback": function(settings){
                         let api = new $.fn.DataTable.Api(settings), pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
@@ -1014,12 +1014,12 @@ window.ThreadManager = (function () {
             }
             opt.elements.data_table = elm.DataTable({
                 "language": {
-                    "info": "Showing _START_ to _END_ of _TOTAL_ participants",
-                    "lengthMenu": "Show _MENU_ participants",
-                    "infoEmpty": "Showing 0 to 0 of 0 participants",
-                    "infoFiltered": "(filtered from _MAX_ total participants)",
-                    "emptyTable": "No participants found",
-                    "zeroRecords": "No matching participants found"
+                    "info": "_START_ - _END_ / _TOTAL_ 連絡先",
+                    "lengthMenu": "1ページ _MENU_ 表示",
+                    "infoEmpty": "0 ー 0 / 0 連絡先",
+                    "infoFiltered": "(_MAX_ 連絡先)",
+                    "emptyTable": "一致する連絡先が見つかりません",
+                    "zeroRecords": "一致する連絡先が見つかりません"
                 },
                 "drawCallback": function(settings){
                     let api = new $.fn.DataTable.Api(settings), pagination = $(this).closest('.dataTables_wrapper').find('.dataTables_paginate');
@@ -1416,7 +1416,7 @@ window.ThreadManager = (function () {
                             Messenger.alert().Alert({
                                 toast : true,
                                 theme : 'warning',
-                                title : 'We could not load in your messages at this time'
+                                title : 'メッセージの読み込みに失敗しました。'
                             });
                             return;
                         }
@@ -1501,9 +1501,9 @@ window.ThreadManager = (function () {
                         theme : 'dark',
                         icon : 'image',
                         backdrop_ctrl : false,
-                        title : 'Send Screenshot?',
+                        title : 'スクリンショートを送信しますか?',
                         body : '<img class="img-fluid" src="'+file+'"><canvas class="NS" id="paste_canvas"></canvas>',
-                        cb_btn_txt : 'Send',
+                        cb_btn_txt : '送信',
                         cb_btn_icon : 'cloud-upload-alt',
                         cb_btn_theme : 'success',
                         onReady : function(){
@@ -1975,14 +1975,14 @@ window.ThreadManager = (function () {
             if (messageStorage.found && Messenger.isProvider(opt.storage.messages[i].owner_id, opt.storage.messages[i].owner_type)){
                 msg.find('.message-body').addClass('shadow-success');
                 Messenger.alert().Modal({
-                    icon : 'edit',
+                    icon : '編集',
                     theme : 'dark',
-                    title: 'Editing Message',
+                    title: 'メッセージを編集',
                     h4: false,
                     backdrop_ctrl : false,
                     unlock_buttons : false,
                     body : ThreadTemplates.render().edit_message(Messenger.format().shortcodeToUnicode(opt.storage.messages[i].body)),
-                    cb_btn_txt : 'Update',
+                    cb_btn_txt : '更新',
                     cb_btn_icon : 'edit',
                     cb_btn_theme : 'success',
                     onReady : function(){
@@ -2156,9 +2156,9 @@ window.ThreadManager = (function () {
                 body : false,
                 centered : true,
                 unlock_buttons : false,
-                title: 'Delete message?',
+                title: 'メッセージを削除しますか?',
                 theme: 'danger',
-                cb_btn_txt: 'Delete',
+                cb_btn_txt: '削除',
                 cb_btn_theme : 'danger',
                 cb_btn_icon:'trash',
                 icon: 'trash',
@@ -2169,7 +2169,7 @@ window.ThreadManager = (function () {
                         data : {},
                         success : function(){
                             Messenger.alert().Alert({
-                                title : 'Message Removed',
+                                title : 'メッセージを削除しました。',
                                 toast : true,
                                 theme : 'warning'
                             });
@@ -2191,15 +2191,15 @@ window.ThreadManager = (function () {
                 icon : 'trash',
                 backdrop_ctrl : false,
                 pre_loader : true,
-                title : 'Checking delete...',
-                cb_btn_txt : 'Delete',
+                title : '削除を確認中...',
+                cb_btn_txt : '削除',
                 cb_btn_icon : 'trash',
                 cb_btn_theme : 'danger',
                 onReady : function(){
                     Messenger.xhr().request({
                         route : Messenger.common().API + 'threads/' + opt.thread.id + '/check-archive',
                         success : function(data){
-                            Messenger.alert().fillModal({body : ThreadTemplates.render().archive_thread_warning(data), title : ' Delete Conversation?'});
+                            Messenger.alert().fillModal({body : ThreadTemplates.render().archive_thread_warning(data), title : ' 会話を削除しますか?'});
                         },
                         fail : Messenger.alert().destroyModal,
                         bypass : true,
@@ -2258,7 +2258,7 @@ window.ThreadManager = (function () {
                 icon : 'users',
                 backdrop_ctrl : false,
                 theme : 'dark',
-                title : 'Loading Participants...',
+                title : '連絡先を読込み中...',
                 pre_loader : true,
                 overflow : true,
                 unlock_buttons : false,
@@ -2267,7 +2267,7 @@ window.ThreadManager = (function () {
                 onReady : gather
             };
             if(!opt.thread.lockout && opt.thread._thread.options.add_participants){
-                modal.cb_btn_txt = 'Add Participants';
+                modal.cb_btn_txt = '連絡先追加';
                 modal.cb_btn_icon = 'user-plus';
                 modal.cb_btn_theme = 'success';
                 modal.callback = groups.addParticipants;
@@ -2354,7 +2354,7 @@ window.ThreadManager = (function () {
             Messenger.alert().fillModal({
                 loader : true,
                 body : null,
-                title : 'Generating...'
+                title : '作成中...'
             });
             Messenger.xhr().payload({
                 route : Messenger.common().API + 'threads/' + thread + '/invites',
@@ -2387,9 +2387,9 @@ window.ThreadManager = (function () {
                 icon : 'user-plus',
                 backdrop_ctrl : false,
                 theme : 'dark',
-                title : 'Loading friends...',
+                title : '連絡先リストを読込み中...',
                 pre_loader : true,
-                cb_btn_txt : 'Add participants',
+                cb_btn_txt : '連絡先追加',
                 cb_btn_icon : 'plus-square',
                 cb_btn_theme : 'success',
                 overflow : true,
@@ -2402,7 +2402,7 @@ window.ThreadManager = (function () {
                         success : function(data){
                             Messenger.alert().fillModal({
                                 body : ThreadTemplates.render().group_add_participants(data),
-                                title : 'Add friends to '+name
+                                title : '連絡先追加：'+name
                             });
                             methods.loadDataTable($("#add_group_participants"));
                         },
@@ -2424,13 +2424,13 @@ window.ThreadManager = (function () {
                         success : function(data){
                             if(data.length){
                                 Messenger.alert().Alert({
-                                    title : 'Participants added!',
+                                    title : '連絡先追加しました!',
                                     toast : true
                                 })
                             }
                             else{
                                 Messenger.alert().Alert({
-                                    title : 'No valid participants found to add.',
+                                    title : '有効な連絡先が選択されていません。',
                                     theme : 'error',
                                     toast : true
                                 })
@@ -2448,20 +2448,20 @@ window.ThreadManager = (function () {
             Messenger.alert().Modal({
                 icon : 'cog',
                 theme : 'dark',
-                title: 'Loading Settings...',
+                title: '設定を読み込み中...',
                 pre_loader: true,
                 h4: false,
                 backdrop_ctrl : false,
                 unlock_buttons : false,
-                cb_btn_txt : 'Save Settings',
-                cb_btn_icon : 'save',
-                cb_btn_theme : 'success',
+                cb_btn_txt : '設定を保存',
+                cb_btn_icon : '保存',
+                cb_btn_theme : '成功',
                 onReady: function () {
                     Messenger.xhr().request({
                         route : Messenger.common().API + 'threads/' + opt.thread.id + '/settings',
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : opt.thread.name+' Settings',
+                                title : opt.thread.name+' 設定',
                                 body : ThreadTemplates.render().group_settings(data)
                             });
                             PageListeners.listen().tooltips();
@@ -2489,7 +2489,7 @@ window.ThreadManager = (function () {
                 },
                 success : function(data){
                     Messenger.alert().Alert({
-                        title : 'You updated '+data.name+'\'s Settings.',
+                        title : '設定を更新しました。',
                         toast : true
                     });
                 },
@@ -2498,13 +2498,13 @@ window.ThreadManager = (function () {
             }, 'put');
         },
         removeGroupAvatar : function(){
-            Messenger.alert().fillModal({loader : true, no_close : true, body : null, title : 'Uploading...'});
+            Messenger.alert().fillModal({loader : true, no_close : true, body : null, title : 'アップロード中...'});
             Messenger.xhr().payload({
                 route : Messenger.common().API + 'threads/' + opt.thread.id + '/avatar',
                 data : {},
                 success : function(data){
                     Messenger.alert().Alert({
-                        title : 'You removed '+data.name+'\'s avatar.',
+                        title : '削除しました。',
                         toast : true
                     });
                 },
@@ -2520,7 +2520,7 @@ window.ThreadManager = (function () {
                 data : {},
                 success : function(data){
                     Messenger.alert().Alert({
-                        title : "Participant removed",
+                        title : "連絡先を削除しました。",
                         toast : true,
                         theme : 'success'
                     });
@@ -2561,14 +2561,14 @@ window.ThreadManager = (function () {
             Messenger.alert().Modal({
                 icon : 'user-cog',
                 theme : 'dark',
-                title: 'Loading Permissions...',
+                title: '権限設定を読み込み中...',
                 pre_loader: true,
                 h4: false,
                 backdrop_ctrl : false,
                 unlock_buttons : false,
-                cb_btn_txt : 'Save Permissions',
-                cb_btn_icon : 'save',
-                cb_btn_theme : 'success',
+                cb_btn_txt : '権限設定を保存',
+                cb_btn_icon : '保存',
+                cb_btn_theme : '成功',
                 onReady: function () {
                     Messenger.xhr().request({
                         route : Messenger.common().API + 'threads/' + opt.thread.id + '/participants/' + participant_id,
@@ -2603,7 +2603,7 @@ window.ThreadManager = (function () {
                 },
                 success : function(participant){
                     Messenger.alert().Alert({
-                        title : 'You updated '+participant.owner.name+'\'s permissions.',
+                        title : '更新に成功しました。',
                         toast : true
                     });
                 },
@@ -2619,9 +2619,9 @@ window.ThreadManager = (function () {
                 size : 'sm',
                 h4 : false,
                 theme : 'danger',
-                title : 'Leave Group?',
-                body : '<span class="h5 font-weight-bold">Are you sure you want to leave '+opt.thread.name+'?</span>',
-                cb_btn_txt : 'Leave',
+                title : 'グループから抜ける?',
+                body : '<span class="h5 font-weight-bold">退出しますか？ '+opt.thread.name+'?</span>',
+                cb_btn_txt : '退出',
                 cb_btn_icon : 'sign-out-alt',
                 cb_btn_theme : 'danger',
                 callback : function(){
@@ -2636,7 +2636,7 @@ window.ThreadManager = (function () {
                             LoadIn.closeOpened();
                             methods.removeThread(data.thread_id);
                             Messenger.alert().Alert({
-                                title : "You left "+data.name,
+                                title : "退出しました。",
                                 toast : true,
                                 theme : 'success'
                             })
@@ -2793,7 +2793,7 @@ window.ThreadManager = (function () {
                     success : function(){
                         Messenger.alert().Alert({
                             close : true,
-                            title : "You muted " + opt.thread.name,
+                            title : "ミュートしました：" + opt.thread.name,
                             toast : true
                         });
                         LoadIn.initiate_thread({thread_id : opt.thread.id, force : true})
@@ -2808,9 +2808,9 @@ window.ThreadManager = (function () {
                 backdrop_ctrl : false,
                 h4 : false,
                 theme : 'primary',
-                title : 'Mute?',
-                body : '<span class="h5 font-weight-bold">Really mute '+opt.thread.name+'? You will no longer receive any alerts or notifications from that conversation.</span>',
-                cb_btn_txt : 'Mute',
+                title : 'ミュート?',
+                body : '<span class="h5 font-weight-bold">Really mute '+opt.thread.name+'? これからメッセージが受信できなくなります</span>',
+                cb_btn_txt : 'ミュート',
                 cb_btn_icon : 'volume-mute',
                 cb_btn_theme : 'primary',
                 callback : payload
@@ -2824,7 +2824,7 @@ window.ThreadManager = (function () {
                 success : function(){
                     Messenger.alert().Alert({
                         close : true,
-                        title : "You un-muted " + opt.thread.name,
+                        title : "ミュートを解除しました： " + opt.thread.name,
                         toast : true
                     });
                     LoadIn.initiate_thread({thread_id : opt.thread.id, force : true})
@@ -2855,7 +2855,7 @@ window.ThreadManager = (function () {
                 overflow : true,
                 theme : 'dark',
                 icon : 'edit',
-                title: 'Loading Edit History...',
+                title: '編集履歴を読み込み中...',
                 pre_loader: true,
                 h4: false,
                 onReady: function () {
@@ -2863,7 +2863,7 @@ window.ThreadManager = (function () {
                         route : route,
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : 'Message Edit History',
+                                title : 'メッセージ編集履歴',
                                 body : ThreadTemplates.render().message_edit_history(data)
                             });
                         }
@@ -2879,7 +2879,7 @@ window.ThreadManager = (function () {
                     if(opt.elements.thread_area.length){
                         if(!opt.storage.threads.length){
                             methods.checkShowThreadSearch();
-                            opt.elements.thread_area.html('<h4 id="no_message_warning" class="text-center mt-4"><span class="badge badge-pill badge-secondary"><i class="fas fa-comments"></i> No conversations</span></h4>');
+                            opt.elements.thread_area.html('<h4 id="no_message_warning" class="text-center mt-4"><span class="badge badge-pill badge-secondary"><i class="fas fa-comments"></i> 会話がありません。</span></h4>');
                             return;
                         }
                         methods.drawThreads();
@@ -2890,7 +2890,7 @@ window.ThreadManager = (function () {
                     if(opt.states.load_in_retries >= 6){
                         Messenger.alert().Alert({
                             theme : 'error',
-                            title : 'We could not load in your threads. Please try refreshing your browser page',
+                            title : '情報取得に失敗しました。リロードしてください。',
                             toast : true
                         });
                         return;
@@ -2927,8 +2927,8 @@ window.ThreadManager = (function () {
                         route : Messenger.common().API+'threads/'+opt.thread.id+'/logs',
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : opt.thread.name+' Logs',
-                                body : data.data.length ? ThreadTemplates.render().thread_logs(data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-database"></i> No logs</span></h3>'
+                                title : opt.thread.name+' ログ',
+                                body : data.data.length ? ThreadTemplates.render().thread_logs(data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-database"></i> ログがありません</span></h3>'
                             });
                         }
                     })
@@ -2954,7 +2954,7 @@ window.ThreadManager = (function () {
                 backdrop_ctrl : false,
                 theme : 'dark',
                 icon : 'images',
-                title: 'Loading Images...',
+                title: '画像を読込み中...',
                 pre_loader: true,
                 h4: false,
                 onReady: function () {
@@ -2962,8 +2962,8 @@ window.ThreadManager = (function () {
                         route : Messenger.common().API+'threads/'+opt.thread.id+'/images',
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : opt.thread.name+' Shared Images',
-                                body : data.data.length ? ThreadTemplates.render().thread_images(data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-images"></i> No Images</span></h3>'
+                                title : opt.thread.name+' 画像を共有',
+                                body : data.data.length ? ThreadTemplates.render().thread_images(data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-images"></i> 画像がありません</span></h3>'
                             });
                             LazyImages.update();
                         }
@@ -2990,7 +2990,7 @@ window.ThreadManager = (function () {
                 overflow : true,
                 theme : 'dark',
                 icon : 'file-alt',
-                title: 'Loading Documents...',
+                title: 'ドキュメントを読込み中...',
                 pre_loader: true,
                 h4: false,
                 onReady: function () {
@@ -2998,8 +2998,8 @@ window.ThreadManager = (function () {
                         route : Messenger.common().API+'threads/'+opt.thread.id+'/documents',
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : opt.thread.name+' Shared Documents',
-                                body : data.data.length ? ThreadTemplates.render().thread_documents(true, data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-file-alt"></i> No Documents</span></h3>'
+                                title : opt.thread.name+' ドキュメント共有',
+                                body : data.data.length ? ThreadTemplates.render().thread_documents(true, data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-file-alt"></i> ドキュメントがありません</span></h3>'
                             });
                         }
                     })
@@ -3049,7 +3049,7 @@ window.ThreadManager = (function () {
                 overflow : true,
                 theme : 'dark',
                 icon : 'music',
-                title: 'Loading Audio...',
+                title: '音声リストを読込み中...',
                 pre_loader: true,
                 h4: false,
                 onReady: function () {
@@ -3057,8 +3057,8 @@ window.ThreadManager = (function () {
                         route : Messenger.common().API+'threads/'+opt.thread.id+'/audio',
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : opt.thread.name+' Shared Audio',
-                                body : data.data.length ? ThreadTemplates.render().thread_audio(true, data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-music"></i> No Audio</span></h3>'
+                                title : opt.thread.name+' 音声を共有',
+                                body : data.data.length ? ThreadTemplates.render().thread_audio(true, data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-music"></i> 音声がありません</span></h3>'
                             });
                         }
                     })
@@ -3084,7 +3084,7 @@ window.ThreadManager = (function () {
                 overflow : true,
                 theme : 'dark',
                 icon : 'video',
-                title: 'Loading Videos...',
+                title: '動画を読み込み中...',
                 pre_loader: true,
                 h4: false,
                 onReady: function () {
@@ -3092,8 +3092,8 @@ window.ThreadManager = (function () {
                         route : Messenger.common().API+'threads/'+opt.thread.id+'/videos',
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : opt.thread.name+' Shared Videos',
-                                body : data.data.length ? ThreadTemplates.render().thread_videos(true, data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-video"></i> No Videos</span></h3>'
+                                title : opt.thread.name+' 動画を共有',
+                                body : data.data.length ? ThreadTemplates.render().thread_videos(true, data) : '<h3 class="text-center mt-2"><span class="badge badge-pill badge-secondary"><i class="fas fa-video"></i> 動画がありません</span></h3>'
                             });
                         }
                     })

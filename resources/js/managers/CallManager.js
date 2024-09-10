@@ -318,9 +318,9 @@ window.CallManager = (function () {
                 theme : 'primary',
                 icon : 'video',
                 size : 'sm',
-                title : 'Incoming video call',
+                title : 'ビデオ通話',
                 body : templates.call_alert(call),
-                cb_btn_txt : 'Answer',
+                cb_btn_txt : '返答',
                 cb_btn_icon : 'video',
                 cb_btn_theme : 'success',
                 callback : function(){

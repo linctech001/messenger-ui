@@ -15,10 +15,10 @@
                     <div class="dropdown">
                         <button data-tooltip="tooltip" title="Messenger Options" data-placement="right" class="btn btn-lg text-secondary btn-light pt-1 pb-0 px-2 dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cogs fa-2x"></i></button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" onclick="ThreadManager.load().search(); return false;" href="#"><i class="fas fa-search"></i> Search Profiles</a>
-                            <a class="dropdown-item" onclick="ThreadManager.load().createGroup(); return false;" href="#"><i class="fas fa-edit"></i> Create Group</a>
-                            <a class="dropdown-item" onclick="ThreadManager.load().contacts(); return false;" href="#"><i class="fas fa-user-friends"></i> Friends</a>
-                            <a class="dropdown-item" onclick="MessengerSettings.show(); return false;" href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a class="dropdown-item" onclick="ThreadManager.load().search(); return false;" href="#"><i class="fas fa-search"></i>プロフィールを検索する</a>
+                            <a class="dropdown-item" onclick="ThreadManager.load().createGroup(); return false;" href="#"><i class="fas fa-edit"></i>グループを作成する</a>
+                            <a class="dropdown-item" onclick="ThreadManager.load().contacts(); return false;" href="#"><i class="fas fa-user-friends"></i>連絡先</a>
+                            <a class="dropdown-item" onclick="MessengerSettings.show(); return false;" href="#"><i class="fas fa-cog"></i>設定</a>
                         </div>
                     </div>
                 </div>

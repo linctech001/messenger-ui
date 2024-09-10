@@ -78,10 +78,10 @@ window.ThreadTemplates = (function () {
             return '<div class="container h-100">\n' +
                 '    <div class="row align-items-end h-100">\n' +
                 '        <div class="col-12 text-center mb-5">\n' +
-                '            <button data-toggle="tooltip" title="Search Profiles" data-placement="top" onclick="ThreadManager.load().search()" class="btn btn-outline-dark btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-search fa-3x"></i></button>\n' +
-                '            <button data-toggle="tooltip" title="Create Group" data-placement="top" onclick="ThreadManager.load().createGroup()" class="btn btn-outline-success btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-edit fa-3x"></i></button>\n' +
-                '            <button data-toggle="tooltip" title="Friends" data-placement="top" onclick="ThreadManager.load().contacts()" class="btn btn-outline-info btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-user-friends fa-3x"></i></button>\n' +
-                '            <button data-toggle="tooltip" title="Messenger Settings" data-placement="top" onclick="MessengerSettings.show()" class="btn btn-outline-primary btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-cog fa-3x"></i></button>\n' +
+                '            <button data-toggle="tooltip" title="プロフィールを検索する" data-placement="top" onclick="ThreadManager.load().search()" class="btn btn-outline-dark btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-search fa-3x"></i></button>\n' +
+                '            <button data-toggle="tooltip" title="グループを作成する" data-placement="top" onclick="ThreadManager.load().createGroup()" class="btn btn-outline-success btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-edit fa-3x"></i></button>\n' +
+                '            <button data-toggle="tooltip" title="連絡先" data-placement="top" onclick="ThreadManager.load().contacts()" class="btn btn-outline-info btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-user-friends fa-3x"></i></button>\n' +
+                '            <button data-toggle="tooltip" title="設定" data-placement="top" onclick="MessengerSettings.show()" class="btn btn-outline-primary btn-circle btn-circle-xl mx-4 my-2"><i class="fas fa-cog fa-3x"></i></button>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
                 '</div>'
@@ -401,11 +401,11 @@ window.ThreadTemplates = (function () {
                 options += '<div class="dropdown">\n' +
                     '<div id="msg_options_'+data.id+'" class="message_hover_opt float-left ml-2 pt-'+(grouped ? '0' : '2')+' h6 text-secondary pointer_area NS" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i title="Options" class="fas fa-ellipsis-v"></i></div>'+
                     '  <div class="dropdown-menu" aria-labelledby="msg_options_'+data.id+'">\n' +
-                    '<a onclick="EmojiPicker.addReaction(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin"></i> React</a>'+
-                    '<a onclick="ThreadManager.reply({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-reply"></i> Reply</a>'+
-                    '<a onclick="ThreadManager.load().messageReactions(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin-tongue"></i> View Reactions</a>'+
+                    '<a onclick="EmojiPicker.addReaction(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin"></i> 絵文字で返答</a>'+
+                    '<a onclick="ThreadManager.reply({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-reply"></i> 返答する</a>'+
+                    '<a onclick="ThreadManager.load().messageReactions(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin-tongue"></i> 返答リスト</a>'+
                     (ThreadManager.state().thread_admin
-                        ? '<a onclick="ThreadManager.archive().Message({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> Delete</a>'
+                        ? '<a onclick="ThreadManager.archive().Message({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> 削除</a>'
                         : '') +
                     '  </div>\n' +
                     '</div>';
@@ -423,10 +423,10 @@ window.ThreadTemplates = (function () {
                     (data.type === 0
                         ? '<a onclick="ThreadManager.editMessage({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-pen"></i> Edit</a>'
                         : '') +
-                    '<a onclick="EmojiPicker.addReaction(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin"></i> React</a>'+
-                    '<a onclick="ThreadManager.reply({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-reply"></i> Reply</a>'+
-                    '<a onclick="ThreadManager.load().messageReactions(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin-tongue"></i> View Reactions</a>'+
-                    '<a onclick="ThreadManager.archive().Message({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> Delete</a>'+
+                    '<a onclick="EmojiPicker.addReaction(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin"></i> 絵文字で返答</a>'+
+                    '<a onclick="ThreadManager.reply({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-reply"></i> テキストで返答する</a>'+
+                    '<a onclick="ThreadManager.load().messageReactions(\''+data.id+'\'); return false;" class="dropdown-item" href="#"><i class="fas fa-grin-tongue"></i> 返答リスト</a>'+
+                    '<a onclick="ThreadManager.archive().Message({id : \''+data.id+'\'}); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> 削除</a>'+
                     '  </div>\n' +
                     '</div>';
             }
@@ -716,11 +716,11 @@ window.ThreadTemplates = (function () {
                 && (data.options.can_friend || data.options.friend_status !== 0))
             {
                 switch(data.options.friend_status){
-                    case 0: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'add\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-user-plus"></i> Add friend</a>';
-                    case 1: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'remove\', friend_id : \''+data.options.friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-user-times"></i> Remove friend</a>';
-                    case 2: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'cancel\', sent_friend_id : \''+data.options.sent_friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-ban"></i> Cancel friend request</a>';
-                    case 3: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'accept\', pending_friend_id : \''+data.options.pending_friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="far fa-check-circle"></i> Accept friend request</a>' +
-                        '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'deny\', pending_friend_id : \''+data.options.pending_friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-ban"></i> Deny friend request</a>';
+                    case 0: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'add\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-user-plus"></i> 連絡先追加</a>';
+                    case 1: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'remove\', friend_id : \''+data.options.friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-user-times"></i> 連絡先削除</a>';
+                    case 2: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'cancel\', sent_friend_id : \''+data.options.sent_friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-ban"></i> 連絡先追加リクエストを取消し</a>';
+                    case 3: return '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'accept\', pending_friend_id : \''+data.options.pending_friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="far fa-check-circle"></i> 連絡先追加リクエストを許可</a>' +
+                        '<a class="dropdown-item network_option" onclick="FriendsManager.action({dropdown : true, provider_id : \''+data.provider_id+'\', action : \'deny\', pending_friend_id : \''+data.options.pending_friend_id+'\', provider_alias : \''+data.provider_alias+'\'}); return false;" href="#"><i class="fas fa-ban"></i> 連絡先追加リクエストを却下</a>';
                 }
             }
             return ''
@@ -742,10 +742,10 @@ window.ThreadTemplates = (function () {
             let base = '<div class="dropdown-divider"></div>' +
                 (data.locked
                         ? ''
-                        : (data.options.muted ? '<a onclick="ThreadManager.mute().unmute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-up"></i> Unmute</a>'
-                            : '<a onclick="ThreadManager.mute().mute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-mute"></i> Mute</a>')
+                        : (data.options.muted ? '<a onclick="ThreadManager.mute().unmute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-up"></i> ミュート解除</a>'
+                            : '<a onclick="ThreadManager.mute().mute(); return false;" class="dropdown-item" href="#"><i class="fas fa-volume-mute"></i> ミュート</a>')
                 ) +
-                '<a onclick="ThreadManager.archive().Thread(); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> Delete Conversation</a>' +
+                '<a onclick="ThreadManager.archive().Thread(); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> 会話を削除</a>' +
                 '</div>';
 
             return '<div id="thread_header_area"><div class="dropdown float-right">\n' +
@@ -781,16 +781,16 @@ window.ThreadTemplates = (function () {
         thread_new_fill : function(data){
             if(data.options.can_message_first){
                 return '<div class="col-12 text-center text-info font-weight-bold h4 mt-5">\n' +
-                    '<i class="fas fa-comments"></i> Starting a new conversation with<br/> '+data.name+
+                    '<i class="fas fa-comments"></i> 新しい会話を始まる<br/> '+data.name+
                     '</div>'
             }
             return '<div class="col-12 text-center text-danger font-weight-bold h4 mt-5">\n' +
-                '<i class="fas fa-comment-slash"></i> Cannot start a conversation with<br/> '+data.name+
+                '<i class="fas fa-comment-slash"></i> 新しい会話が開始できない<br/> '+data.name+
                 '</div>'
         },
         thread_empty_search : function(more, none){
-            let msg = 'Search above for other profiles on '+Messenger.common().APP_NAME+'!';
-            if(more) msg = none ? 'No matching profiles were found' : 'Use at least 3 characters in your query';
+            let msg = '連絡先を検索する';
+            if(more) msg = none ? '一致する連絡先が見つかりません' : '3文字以上を入力してください';
             return '<div class="col-12 text-center text-info font-weight-bold h4 mt-5">\n' +
                 '<i class="fas fa-search"></i> '+msg+
                 '</div>'
@@ -928,7 +928,7 @@ window.ThreadTemplates = (function () {
                 '    <div class="form-group mb-0 py-2 alert-dark shadow rounded">\n' +
                 '    <div class="col-12">' +
                 '        <img alt="Avatar" height="62" width="62" class="mr-3 rounded avatar-is-offline" src="'+settings.avatar.sm+'"/>' +
-                '        <button onclick="$(\'#thread_avatar_image_file\').trigger(\'click\')" type="button" class="btn btn-sm btn-success mr-3"><i class="fas fa-image"></i> Upload Avatar</button>' +
+                '        <button onclick="$(\'#thread_avatar_image_file\').trigger(\'click\')" type="button" class="btn btn-sm btn-success mr-3"><i class="fas fa-image"></i> プロフィール画像をアップロード</button>' +
                 '        <button onclick="ThreadManager.group().removeGroupAvatar()" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Remove Avatar</button>' +
                 '    </div></div>\n' +
                 '    </div>\n' +
@@ -1054,7 +1054,7 @@ window.ThreadTemplates = (function () {
         new_group_friends : function(friends){
             let top = '<div class="col-12">', bot = '</div>',
                 none = '<h4 class="text-center my-5"><span class="badge badge-pill badge-secondary"><i class="fas fa-user-friends"></i> No friends to add</span></h4>',
-                table_top = '<label class="font-weight-bold control-label h5 mb-3">Add friends to group:</label>' +
+                table_top = '<label class="font-weight-bold control-label h5 mb-3">連絡先追加:</label>' +
                     '<div class="row">\n' +
                     '    <div class="col-12">\n' +
                     '        <div class="table-responsive-sm">\n' +
@@ -1228,7 +1228,7 @@ window.ThreadTemplates = (function () {
                 '                                <div class="input-group-append">\n' +
                 '                                    <button id="make_thread_btn" class="btn btn-primary"><i class="fas fa-edit"></i> '+create+'</button>\n' +
                 '                                </div>\n' +
-                '                                <div class="invalid-feedback mb-n4">Required / 3 - 50 characters</div>'+
+                '                                <div class="invalid-feedback mb-n4">3文字以上入力してください。</div>'+
                 '                            </div>'+
                 '                            </div>\n' +
                 '                            <div class="col-12 my-3"></div>\n' +
@@ -1299,8 +1299,8 @@ window.ThreadTemplates = (function () {
                     '            <table id="contact_list_table" class="table table-sm table-hover table-striped">\n' +
                     '                <thead class="bg-gradient-dark text-light">\n' +
                     '                <tr>\n' +
-                    '                    <th>Name</th>\n' +
-                    '                    <th><span class="float-right">Friends since</span></th>\n' +
+                    '                    <th>名前</th>\n' +
+                    '                    <th><span class="float-right">作成時間</span></th>\n' +
                     '                </tr>\n' +
                     '                </thead>\n' +
                     '                <tbody>',
@@ -1382,11 +1382,11 @@ window.ThreadTemplates = (function () {
                 '                            </div>\n' +
                 '                            <div class="col-12 my-1">\n' +
                 '                                <div class="float-left">\n' +
-                '                                    <button style="font-size: 18px; line-height: 0;" id="file_upload_btn" data-toggle="tooltip" title="Upload File(s)" data-placement="top" class="p-1 btn btn-sm btn-light" onclick="$(\'#doc_file\').trigger(\'click\');" type="button"><i class="fas fa-plus-circle"></i></button>\n' +
-                '                                    <button style="font-size: 18px; line-height: 0;" id="record_audio_message_btn" data-toggle="tooltip" title="Record Audio Message" data-placement="top" class="p-1 mx-1 btn btn-sm btn-light" type="button"><i class="fas fa-microphone"></i></button>\n' +
+                '                                    <button style="font-size: 18px; line-height: 0;" id="file_upload_btn" data-toggle="tooltip" title="ファイルアップロード" data-placement="top" class="p-1 btn btn-sm btn-light" onclick="$(\'#doc_file\').trigger(\'click\');" type="button"><i class="fas fa-plus-circle"></i></button>\n' +
+                '                                    <button style="font-size: 18px; line-height: 0;" id="record_audio_message_btn" data-toggle="tooltip" title="音声メッセージ" data-placement="top" class="p-1 mx-1 btn btn-sm btn-light" type="button"><i class="fas fa-microphone"></i></button>\n' +
                 '                                </div>\n' +
                 '                                <div class="float-right">\n' +
-                '                                    <button style="font-size: 18px; line-height: 0;" id="add_emoji_btn" data-toggle="tooltip" title="Add emoji" data-placement="top" class="p-1 btn btn-sm btn-light" type="button"><i class="fas fa-grin"></i></button>\n' +
+                '                                    <button style="font-size: 18px; line-height: 0;" id="add_emoji_btn" data-toggle="tooltip" title="絵文字" data-placement="top" class="p-1 btn btn-sm btn-light" type="button"><i class="fas fa-grin"></i></button>\n' +
                 '                                </div>\n' +
                 '                            </div>\n' +
                 '                        </form>\n' +

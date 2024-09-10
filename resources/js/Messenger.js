@@ -143,10 +143,10 @@ window.Messenger = (function () {
     },
     format = {
         makeHumanTime : function(date){
-            return dayjs(date).format('ddd, MMM Do YYYY, h:mm:ssa')
+            return dayjs(date).format('YYYY-MM-DD HH:mm:ss')
         },
         makeTimeAgo : function(date){
-            return dayjs(date).fromNow()
+            return dayjs(date).format('YYYY-MM-DD HH:mm:ss')
         },
         escapeHtml : function(text) {
             let map = {
@@ -266,7 +266,7 @@ window.Messenger = (function () {
                 modal : $(".modal")
             },
             defaults = {
-                title : 'Alert',
+                title : '注意',
                 allow_close : true,
                 unlock_buttons : true,
                 close_btn : true,
@@ -277,7 +277,7 @@ window.Messenger = (function () {
                 h4 : true,
                 backdrop_ctrl : true,
                 overflow : false,
-                close_btn_txt : 'Close',
+                close_btn_txt : '閉じる',
                 pre_loader : false,
                 centered : false,
                 timer : false
@@ -404,7 +404,7 @@ window.Messenger = (function () {
             alerts.Modal({
                 icon : 'image',
                 theme : 'dark',
-                title : name+'\'s Photo',
+                title : name+'のプロフィール画像',
                 pre_loader : true
             });
             let img = new Image();

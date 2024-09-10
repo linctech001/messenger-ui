@@ -20,18 +20,18 @@ window.MessengerSettings = (function () {
                 backdrop_ctrl : false,
                 theme : 'dark',
                 icon : 'cog',
-                title: 'Loading Settings...',
+                title: '設定を読み込み中...',
                 pre_loader: true,
                 h4: false,
-                cb_btn_txt : 'Save Settings',
-                cb_btn_icon : 'save',
-                cb_btn_theme : 'success',
+                cb_btn_txt : '設定を保存',
+                cb_btn_icon : '保存',
+                cb_btn_theme : '成功',
                 onReady: function () {
                     Messenger.xhr().request({
                         route : Messenger.common().API + 'settings',
                         success : function(data){
                             Messenger.alert().fillModal({
-                                title : 'General Settings',
+                                title : '設定',
                                 body : templates.settings(data)
                             });
                             PageListeners.listen().tooltips();
@@ -67,7 +67,7 @@ window.MessengerSettings = (function () {
             PageListeners.listen().tooltips();
             if(Messenger.common().modules.includes('NotifyManager')) NotifyManager.settings(data);
             Messenger.alert().Alert({
-                title : 'Updated your settings',
+                title : '設定が更新されました',
                 toast : true
             });
             Messenger.handle().switchCss(data.dark_mode);
@@ -110,9 +110,9 @@ window.MessengerSettings = (function () {
                 body : false,
                 centered : true,
                 unlock_buttons : false,
-                title: 'Remove Avatar?',
+                title: '削除しますか?',
                 theme: 'danger',
-                cb_btn_txt: 'Remove',
+                cb_btn_txt: '削除',
                 cb_btn_theme : 'danger',
                 cb_btn_icon:'trash',
                 icon: 'trash',
@@ -136,7 +136,7 @@ window.MessengerSettings = (function () {
                 Messenger.alert().Alert({
                     toast : true,
                     theme : 'success',
-                    title : 'Your avatar has been updated'
+                    title : '画像更新に成功しました'
                 })
             } else {
                 window.location.reload()
@@ -146,7 +146,7 @@ window.MessengerSettings = (function () {
     templates = {
         settings : function(data){
             return '<div class="form-row">\n' +
-                '<div class="col-6"><label class="control-label d-block h5 font-weight-bold" for="online_status_switch">Online Status</label>\n' +
+                '<div class="col-6"><label class="control-label d-block h5 font-weight-bold" for="online_status_switch">Online状態</label>\n' +
                 '<div id="online_status_switch" class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                 '<label data-toggle="tooltip" title="Online" data-placement="left" class="pointer_area btn btn-success '+(data.online_status === 1 ? 'active glowing_btn' : '')+'">\n' +
                 '<input type="radio" name="online_status" value="1" autocomplete="off" '+(data.online_status === 1 ? 'checked' : '')+'><i class="fas fa-wifi"></i>\n' +
@@ -160,33 +160,33 @@ window.MessengerSettings = (function () {
                 '</div></div>\n' +
                 '<div class="col-6 mt-1 text-right">' +
                 '    <div class="btn-group-vertical mr-1">' +
-                '        <button data-toggle="tooltip" data-placement="left" title="Upload New Avatar" onclick="$(\'#profile_avatar_upload\').click()" class="btn btn-sm btn-outline-success"><i class="fas fa-image"></i></button>'+
-                '        <button data-toggle="tooltip" data-placement="left" title="Remove Avatar" onclick="MessengerSettings.removeAvatar()" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>' +
+                '        <button data-toggle="tooltip" data-placement="left" title="プロフィール画像をアップロード" onclick="$(\'#profile_avatar_upload\').click()" class="btn btn-sm btn-outline-success"><i class="fas fa-image"></i></button>'+
+                '        <button data-toggle="tooltip" data-placement="left" title="プロフィール画像を削除" onclick="MessengerSettings.removeAvatar()" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>' +
                 '    </div>'+
-                '    <div data-toggle="tooltip" title="Upload New Avatar" data-placement="right" onclick="$(\'#profile_avatar_upload\').click()" class="pointer_area d-inline">\n' +
+                '    <div data-toggle="tooltip" title="プロフィール画像をアップロード" data-placement="right" onclick="$(\'#profile_avatar_upload\').click()" class="pointer_area d-inline">\n' +
                 '         <img alt="Avatar" height="62" width="62" class="rounded avatar-is-'+(data.online_status === 1 ? "online" : data.online_status === 2 ? "away" : "offline")+'" src="'+data.owner.avatar.sm+'"/>\n' +
                 '    </div>\n' +
                 '</div>' +
                 '</div><hr>'+
                 '<table class="table mb-0 table-sm table-hover"><tbody>\n' +
                 '<tr class="'+(data.message_popups ? 'bg-light' : '')+'">\n' +
-                '<td class="pointer_area" onclick="$(\'#message_popups\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">Message Popups</span></div></td>\n' +
+                '<td class="pointer_area" onclick="$(\'#message_popups\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">メッセージポップアップ</span></div></td>\n' +
                 '<td><div class="mt-1 float-right"><span class="switch switch-sm mt-1"><input class="switch switch_input m_setting_toggle" id="message_popups" name="message_popups" type="checkbox" '+(data.message_popups ? 'checked' : '')+'/><label for="message_popups"></label></span></div></td>\n' +
                 '</tr>\n' +
                 '<tr class="'+(data.message_sound ? 'bg-light' : '')+'">\n' +
-                '<td class="pointer_area" onclick="$(\'#message_sounds\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">Message Sounds</span></div></td>\n' +
+                '<td class="pointer_area" onclick="$(\'#message_sounds\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">メッセージ音</span></div></td>\n' +
                 '<td><div class="mt-1 float-right"><span class="switch switch-sm mt-1"><input class="switch switch_input m_setting_toggle" id="message_sounds" name="message_sounds" type="checkbox" '+(data.message_sound ? 'checked' : '')+'/><label for="message_sounds"></label></span></div></td>\n' +
                 '</tr>\n' +
                 '<tr class="'+(data.call_ringtone_sound ? 'bg-light' : '')+'">\n' +
-                '<td class="pointer_area" onclick="$(\'#call_ringtone_sound\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">Call Ringtone</span></div></td>\n' +
+                '<td class="pointer_area" onclick="$(\'#call_ringtone_sound\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">着信音</span></div></td>\n' +
                 '<td><div class="mt-1 float-right"><span class="switch switch-sm mt-1"><input class="switch switch_input m_setting_toggle" id="call_ringtone_sound" name="call_ringtone_sound" type="checkbox" '+(data.call_ringtone_sound ? 'checked' : '')+'/><label for="call_ringtone_sound"></label></span></div></td>\n' +
                 '</tr>\n' +
                 '<tr class="'+(data.notify_sound ? 'bg-light' : '')+'">\n' +
-                '<td class="pointer_area" onclick="$(\'#notify_sound\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">Notification Sound</span></div></td>\n' +
+                '<td class="pointer_area" onclick="$(\'#notify_sound\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">通知音</span></div></td>\n' +
                 '<td><div class="mt-1 float-right"><span class="switch switch-sm mt-1"><input class="switch switch_input m_setting_toggle" id="notify_sound" name="notify_sound" type="checkbox" '+(data.notify_sound ? 'checked' : '')+'/><label for="notify_sound"></label></span></div></td>\n' +
                 '</tr>\n' +
                 '<tr class="'+(data.dark_mode ? 'bg-light' : '')+'">\n' +
-                '<td class="pointer_area" onclick="$(\'#dark_mode\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">Dark Mode</span></div></td>\n' +
+                '<td class="pointer_area" onclick="$(\'#dark_mode\').click()"><div class="h4 mt-1"><i class="fas fa-caret-right"></i> <span class="h5">暗いモード</span></div></td>\n' +
                 '<td><div class="mt-1 float-right"><span class="switch switch-sm mt-1"><input class="switch switch_input m_setting_toggle" id="dark_mode" name="dark_mode" type="checkbox" '+(data.dark_mode ? 'checked' : '')+'/><label for="dark_mode"></label></span></div></td>\n' +
                 '</tr>\n' +
                 '</tbody></table>\n'

@@ -759,7 +759,7 @@ window.ThreadBots = (function () {
                 '    <div class="form-group mb-0 py-2 alert-dark shadow rounded">\n' +
                 '    <div class="col-12">' +
                 '        <img alt="Avatar" height="62" width="62" class="mr-3 rounded avatar-is-offline" src="'+bot.avatar.sm+'"/>' +
-                '        <button onclick="$(\'#bot_avatar_upload\').click()" type="button" class="btn btn-sm btn-success mr-3"><i class="fas fa-image"></i> Upload Avatar</button>' +
+                '        <button onclick="$(\'#bot_avatar_upload\').click()" type="button" class="btn btn-sm btn-success mr-3"><i class="fas fa-image"></i> プロフィール画像をアップロード</button>' +
                 '        <button onclick="ThreadBots.removeAvatar()" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Remove Avatar</button>' +
                 '    </div></div>\n' +
                 '    <hr>\n' +
@@ -779,7 +779,7 @@ window.ThreadBots = (function () {
                     '  Bot Avatar <i class="fas fa-image"></i>' +
                     '</button>\n' +
                     '  <div class="dropdown-menu" aria-labelledby="botAvatarDropdown">\n' +
-                    '    <a onclick="$(\'#bot_avatar_upload\').click(); return false;" class="dropdown-item" href="#"><i class="fas fa-image"></i> Upload Avatar</a>\n' +
+                    '    <a onclick="$(\'#bot_avatar_upload\').click(); return false;" class="dropdown-item" href="#"><i class="fas fa-image"></i> プロフィール画像をアップロード</a>\n' +
                     '    <a onclick="ThreadBots.removeAvatar(); return false;" class="dropdown-item" href="#"><i class="fas fa-trash"></i> Remove Avatar</a>\n' +
                     '  </div>\n' +
                     '<button onclick="ThreadBots.removeBot(\''+bot.id+'\')" type="button" class="btn btn-sm btn-outline-danger mr-3 mb-2">Delete Bot <i class="fas fa-trash-alt"></i></button>' +

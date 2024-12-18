@@ -377,7 +377,7 @@ window.ThreadTemplates = (function () {
                                '<div class="h3 spinner-grow text-info" style="width: 4rem; height: 4rem;" role="status"><span class="sr-only">loading...</span></div>'+
                            '</a>';
                 case 2:
-                    return '<a href="'+data.document+'" target="_blank"><i class="fas fa-file-download"></i> '+data.body+'</a>';
+                    return '<a href="'+data.document+'" target="_blank"><i class="fas fa-file-download"></i> '+data.body.replace(/_[^_]*\./, '.')+'</a>';
                 case 3:
                     let audio = '<audio controls preload="none" class="message-audio-player"><source src="'+data.audio+'?stream=true"></audio>';
                     if(data.extra !== null && data.extra.audio_message){

@@ -1,5 +1,5 @@
 {
-    "name": "rtippin/messenger-ui",
+    "name": "linctech/messenger-ui",
     "description": "Laravel messenger suite UI.",
     "license": "MIT",
     "authors": [
@@ -14,8 +14,14 @@
         "Laravel",
         "Messenger"
     ],
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "git@github.com:linctech001/messenger.git"
+        }
+    ],
     "require": {
-        "rtippin/messenger": "^1.19"
+        "linctech/messenger": "dev-main"
     },
     "autoload": {
         "psr-4": {

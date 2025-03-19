@@ -46,10 +46,6 @@ window.autolinker = new Autolinker({
     stripPrefix : true,
     stripTrailingSlash : true,
     newWindow : true,
-    truncate : {
-        length : 50,
-        location : 'smart'
-    }
 });
 
 $.extend( true, $.fn.dataTable.defaults, {

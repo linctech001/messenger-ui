@@ -1378,6 +1378,8 @@ window.ThreadTemplates = (function () {
                 '                            <div class="col-12">\n' +
                 '                                <div class="form-group form-group-xs-nm">\n' +
                 '                                    <textarea rows="3" style="resize: none;" disabled autocomplete="off" spellcheck="true" type="text" title="message" name="message_txt_'+Date.now()+'" id="message_text_input" class="form-control w-100 pr-special-btn"></textarea>\n' +
+                                                    '<div id="inline_send_msg_btn" style="display: none;" class="float-right inline_send_msg_btn_2"><a title="Click to send or press enter" href="#" ' +
+                'onclick="ThreadManager.send(); return false;" class="text-success h3"><i class="fas fa-paper-plane"></i></a></div>'+
                 '                                </div>\n' +
                 '                            </div>\n' +
                 '                            <div class="col-12 my-1">\n' +

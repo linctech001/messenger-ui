@@ -334,6 +334,7 @@ window.ThreadManager = (function () {
                     opt.elements.record_audio_message_btn.click(mounted.audioMessage);
                     opt.elements.add_emoji_btn.click(mounted.showEmojiPicker);
                     opt.elements.message_text_input.on('paste', methods.pasteImage);
+                    opt.elements.message_text_input.on('focus', methods.manageSendMessageButton);
                     opt.elements.form.keydown(mounted.formKeydown);
                     opt.elements.form.on('input keyup', methods.manageSendMessageButton);
                     opt.elements.form.on('submit', mounted.stopDefault);
@@ -351,6 +352,7 @@ window.ThreadManager = (function () {
                     opt.elements.add_emoji_btn.click(mounted.showEmojiPicker);
                     opt.elements.form.keydown(mounted.formKeydown);
                     opt.elements.form.on('input keyup', methods.manageSendMessageButton);
+                    opt.elements.message_text_input.on('focus', methods.manageSendMessageButton);
                     opt.elements.form.on('submit', mounted.stopDefault);
                     if(!Messenger.common().mobile) opt.elements.message_text_input.focus();
                 break;
@@ -379,6 +381,7 @@ window.ThreadManager = (function () {
                         opt.elements.record_audio_message_btn.off('click', mounted.audioMessage);
                         opt.elements.add_emoji_btn.off('click', mounted.showEmojiPicker);
                         opt.elements.message_text_input.off('paste', methods.pasteImage);
+                        opt.elements.message_text_input.off('focus', methods.manageSendMessageButton);
                         opt.elements.form.off('keydown', mounted.formKeydown);
                         opt.elements.form.off('input keyup', methods.manageSendMessageButton);
                         opt.elements.form.off('submit', mounted.stopDefault);
@@ -398,6 +401,7 @@ window.ThreadManager = (function () {
                         opt.elements.add_emoji_btn.off('click', mounted.showEmojiPicker);
                         opt.elements.form.off('keydown', mounted.formKeydown);
                         opt.elements.form.off('input keyup', methods.manageSendMessageButton);
+                        opt.elements.message_text_input.off('focus', methods.manageSendMessageButton);
                         opt.elements.form.off('submit', mounted.stopDefault);
                     }catch (e) {
                         console.log(e);
@@ -489,6 +493,7 @@ window.ThreadManager = (function () {
                 return;
             }
             let focus_input = document.getElementById('message_text_input');
+            methods.manageSendMessageButton();
             switch (opt.thread.type) {
                 case 1:
                 case 2:
@@ -917,10 +922,12 @@ window.ThreadManager = (function () {
             if(message_contents.trim().length){
                 if(!btn.length){
                     opt.elements.message_text_input.after(ThreadTemplates.render().send_msg_btn(false))
+                } else {
+                    btn.show();
                 }
             }
             else{
-                btn.remove()
+                btn.hide()
             }
         },
         groupSettingsState : function(settings){
@@ -1556,6 +1563,7 @@ window.ThreadManager = (function () {
                     fail_alert : true,
                     bypass : true
                 });
+                localStorage.setItem('message_input_content', '');
                 methods.manageSendMessageButton()
             }
         },

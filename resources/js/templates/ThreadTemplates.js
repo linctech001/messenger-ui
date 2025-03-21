@@ -323,7 +323,7 @@ window.ThreadTemplates = (function () {
         private_thread : function(data, selected, special){
             return '<li title="'+Messenger.format().escapeHtml(data.name)+'" id="thread_list_'+data.id+'" class="thread_list_item '+(selected ? "alert-warning shadow-sm rounded" : "")+' '+templates.thread_highlight(data)+'">' +
                 '<div class="thread-list-status">'+templates.thread_status(data)+'</div> '+
-                '<a '+(special ? '' : 'onclick="ThreadManager.load().initiate_thread({thread_id : \''+data.id+'\'}); return false;"')+' href="'+Messenger.common().WEB+'/'+data.id+'">' +
+                '<a '+(special ? '' : 'onclick="ThreadManager.load().initiate_thread({thread_id : \''+data.id+'\'}); localStorage.setItem(\'thread_id\', \''+data.id+'\'); return false;"')+' href="'+Messenger.common().WEB+'/'+data.id+'">' +
                 '<div class="media"><div class="media-left media-middle"><img src="'+data.avatar.sm+'" class="media-object rounded-circle thread-list-avatar avatar-is-'+(data.resources.recipient.options.online_status === 1
                     ? "online" : data.resources.recipient.options.online_status === 2 ? "away" : "offline")+'" /></div>' +
                 '<div class="media-body thread_body_li"><div class="header d-inline"><small><div class="float-right date"><time class="timeago" datetime="'+data.updated_at+'">'+Messenger.format().makeTimeAgo(data.updated_at)+'</time></div></small>' +
@@ -334,7 +334,7 @@ window.ThreadTemplates = (function () {
         group_thread : function(data, selected, special){
             return '<li title="'+Messenger.format().escapeHtml(data.name)+'" id="thread_list_'+data.id+'" class="thread_list_item '+(selected ? "alert-warning shadow-sm rounded" : "")+' '+templates.thread_highlight(data)+'">' +
                 '<div class="thread-list-status">'+templates.thread_status(data)+'</div> '+
-                '<a '+(special ? '' : 'onclick="ThreadManager.load().initiate_thread({thread_id : \''+data.id+'\'}); return false;"')+' href="'+Messenger.common().WEB+'/'+data.id+'">' +
+                '<a '+(special ? '' : 'onclick="ThreadManager.load().initiate_thread({thread_id : \''+data.id+'\'});localStorage.setItem(\'thread_id\', \''+data.id+'\'); return false;"')+' href="'+Messenger.common().WEB+'/'+data.id+'">' +
                 '<div class="media"><div class="media-left media-middle"><img src="'+data.avatar.sm+'" class="show_group_avatar_'+data.id+' media-object rounded-circle thread-list-avatar thread-group-avatar '+(selected ? "avatar-is-online" : "avatar-is-offline")+'" /></div>' +
                 '<div class="media-body thread_body_li"><div class="header d-inline"><small><div class="float-right date"><time class="timeago" datetime="'+data.updated_at+'">'+Messenger.format().makeTimeAgo(data.updated_at)+'</time></div></small>' +
                 '<div class="from font-weight-bold">'+data.name+'</div></div><div class="description">' +

@@ -1563,7 +1563,7 @@ window.ThreadManager = (function () {
                     fail_alert : true,
                     bypass : true
                 });
-                localStorage.setItem('message_input_content', '');
+                localStorage.setItem('message_input_content_'+opt.thread.id, '');
                 methods.manageSendMessageButton()
             }
         },
